@@ -1409,6 +1409,9 @@ public enum ParticleEffect {
 		 * @return The version number
 		 */
 		public static int getVersion() {
+			if (!initialized) {
+				initialize();
+			}
 			return version;
 		}
 
