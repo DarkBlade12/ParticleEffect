@@ -948,11 +948,10 @@ public enum ParticleEffect {
 		 * @param material Material of the item/block
 		 * @param data Data value of the item/block
 		 */
-		@SuppressWarnings("deprecation")
-		public ParticleData(Material material, byte data) {
+		public ParticleData(Material material, byte data, int... packetData) {
 			this.material = material;
 			this.data = data;
-			this.packetData = new int[] { material.getId(), data };
+			this.packetData = packetData;
 		}
 
 		/**
@@ -1008,8 +1007,9 @@ public enum ParticleEffect {
 		 * @param data Data value of the item
 		 * @see ParticleData#ParticleData(Material, byte)
 		 */
+		@SuppressWarnings("deprecation")
 		public ItemData(Material material, byte data) {
-			super(material, data);
+			super(material, data, material.getId(), data);
 		}
 	}
 
@@ -1030,8 +1030,9 @@ public enum ParticleEffect {
 		 * @throws IllegalArgumentException If the material is not a block
 		 * @see ParticleData#ParticleData(Material, byte)
 		 */
+		@SuppressWarnings("deprecation")
 		public BlockData(Material material, byte data) throws IllegalArgumentException {
-			super(material, data);
+			super(material, data, material.getId() | (data << 12));
 			if (!material.isBlock()) {
 				throw new IllegalArgumentException("The material is not a block");
 			}
