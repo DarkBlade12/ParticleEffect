@@ -948,10 +948,11 @@ public enum ParticleEffect {
 		 * @param material Material of the item/block
 		 * @param data Data value of the item/block
 		 */
-		public ParticleData(Material material, byte data, int... packetData) {
+		@SuppressWarnings("deprecation")
+		public ParticleData(Material material, byte data) {
 			this.material = material;
 			this.data = data;
-			this.packetData = packetData;
+			this.packetData = new int[] { material.getId(), data };
 		}
 
 		/**
@@ -1007,9 +1008,8 @@ public enum ParticleEffect {
 		 * @param data Data value of the item
 		 * @see ParticleData#ParticleData(Material, byte)
 		 */
-		@SuppressWarnings("deprecation")
 		public ItemData(Material material, byte data) {
-			super(material, data, material.getId(), data);
+			super(material, data);
 		}
 	}
 
@@ -1030,9 +1030,8 @@ public enum ParticleEffect {
 		 * @throws IllegalArgumentException If the material is not a block
 		 * @see ParticleData#ParticleData(Material, byte)
 		 */
-		@SuppressWarnings("deprecation")
 		public BlockData(Material material, byte data) throws IllegalArgumentException {
-			super(material, data, material.getId() | (data << 12));
+			super(material, data);
 			if (!material.isBlock()) {
 				throw new IllegalArgumentException("The material is not a block");
 			}
@@ -1463,7 +1462,8 @@ public enum ParticleEffect {
 					ReflectionUtils.setValue(packet, true, "a", enumParticle.getEnumConstants()[effect.getId()]);
 					ReflectionUtils.setValue(packet, true, "j", longDistance);
 					if (data != null) {
-						ReflectionUtils.setValue(packet, true, "k", data.getPacketData());
+						int[] packetData = data.getPacketData();
+						ReflectionUtils.setValue(packet, true, "k", effect == ParticleEffect.ITEM_CRACK ? packetData : new int[] { packetData[0] | (packetData[1] << 12) });
 					}
 				}
 				ReflectionUtils.setValue(packet, true, "b", (float) center.getX());
