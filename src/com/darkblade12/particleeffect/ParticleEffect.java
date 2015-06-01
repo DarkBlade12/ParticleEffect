@@ -350,7 +350,7 @@ public enum ParticleEffect {
 	 * <li>The speed value has no influence on this particle effect
 	 * </ul>
 	 */
-	BLOCK_CRACK("blockcrack", 37, -1, ParticleProperty.DIRECTIONAL, ParticleProperty.REQUIRES_DATA),
+	BLOCK_CRACK("blockcrack", 37, -1, ParticleProperty.REQUIRES_DATA),
 	/**
 	 * A particle effect which is displayed when falling:
 	 * <ul>
