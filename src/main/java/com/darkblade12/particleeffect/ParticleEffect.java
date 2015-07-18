@@ -34,6 +34,7 @@ import java.util.Map.Entry;
  * <li>@ShadyPotato (1.8 names, ids and packet parameters)
  * <li>@RingOfStorms (particle behavior)
  * <li>@Cybermaxke (particle behavior)
+ * <li>@JamieSinn (hosting a jenkins server and documentation for particleeffect)
  * </ul>
  * <p>
  * <i>It would be nice if you provide credit to me if you use this class in a published project</i>
