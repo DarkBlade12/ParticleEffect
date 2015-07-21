@@ -34,7 +34,7 @@ import java.util.Map.Entry;
  * <li>@ShadyPotato (1.8 names, ids and packet parameters)
  * <li>@RingOfStorms (particle behavior)
  * <li>@Cybermaxke (particle behavior)
- * <li>@JamieSinn (hosting a jenkins server and documentation for particleeffect) 
+ * <li>@JamieSinn (hosting a jenkins server and documentation for particleeffect)
  * </ul>
  * <p>
  * <i>It would be nice if you provide credit to me if you use this class in a published project</i>
@@ -1387,7 +1387,7 @@ public enum ParticleEffect {
 		public ParticlePacket(ParticleEffect effect, ParticleColor color, boolean longDistance) {
 			this(effect, color.getValueX(), color.getValueY(), color.getValueZ(), 1, 0, longDistance, null);
 			if (effect == ParticleEffect.REDSTONE && color instanceof OrdinaryColor && ((OrdinaryColor) color).getRed() == 0) {
-				offsetX = (float) 1 / 255F;
+				offsetX = Float.MIN_NORMAL;
 			}
 		}
 
