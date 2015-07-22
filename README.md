@@ -17,4 +17,25 @@ Documentation here: http://ci.sinndevelopment.com/job/ParticleEffect%20Library/j
             <artifactId>particleeffect</artifactId>
             <version>1.7</version>
         </dependency>
+        
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>2.4.1</version>
+            <configuration>
+                <artifactSet>
+                    <includes>
+                        <include>com.darkblade12:*</include>
+                    </includes>
+                </artifactSet>
+            </configuration>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>shade</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
 ```
